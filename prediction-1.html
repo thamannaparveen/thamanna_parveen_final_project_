@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <title>prediction</title>
+<style type ="text/css">
+  *{
+     margin:0;
+     padding:0;
+     font-family:sans-serif;
+     background:#7f8fa6;
+     }
+   </style>
+  </head>
+  <body>
+  <section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-20">
+      
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Loan Default Prediction</h1>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base"></p>
+      <br><br><h2><b>Fill the loan details of the customers to check whether they will get defaulted or not</b></h2>
+
+    </div>
+
+    <div>
+    
+    </div>
+
+    <form action="{{url_for('predict')}}"  method='POST'>
+        <div class="mb-3">
+  <label for="exampleFormControlInput1"  class="form-label"> Gender</label>
+  <select class="form-select" id="Gender" name="Gender" aria-label="Default select example">
+  <option selected>-- select gender --</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+  <option value="Joint">Joint</option>
+  <option value="Sex not available">Sex not available</option>
+</select>
+ </div>
+<div class="mb-3">
+  <label  for="exampleFormControlInput1" class="form-label">Loan Type</label>
+  <select class="form-select" id="loan_type" name="loan_type" aria-label="Default select example">
+  <option selected>-- select loan type --</option>
+  <option value="loan_type_type1">loan_type_type1</option>
+  <option value="loan_type_type2">loan_type_type2</option>
+  <option value="loan_type_type3">loan_type_type3</option>
+</select>
+</div>
+<div class="mb-3">
+  <label  for="exampleFormControlInput1" class="form-label">Credit_type</label>
+  <select class="form-select" id="credit_type" name="credit_type" aria-label="Default select example">
+  <option selected>-- select credit type --</option>
+  <option value="credit_type_CIB">credit_type_CIB</option>
+  <option value="credit_type_CRIF">credit_type_CRIF</option>
+  <option value="credit_type_EQUI">credit_type_EQUI</option>
+  <option value="credit_type_EXP">credit_type_EXP</option>
+</select>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Enter Applicant Income</label>
+  <input type="text" class="form-control" id="income" name="income" placeholder="Income">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Enter rate of interest</label>
+  <input type="text" class="form-control" id="rate_of_interest" name="rate_of_interest" placeholder="Rate of Interest">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Enter Loan Amount</label>
+  <input type="text" class="form-control" id="loan_amount" name="loan_amount" placeholder="Loan_amount">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Enter Loan to value</label>
+  <input type="text" class="form-control" id="LTV" name="LTV" placeholder="LTV">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Enter age</label>
+  <input type="text" class="form-control" id="age" name="age" placeholder="age">
+</div>
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Enter Credit_Score</label>
+  <input type="text" class="form-control" id="Credit_Score" name="Credit_Score" placeholder="Credit_Score">
+</div>
+      <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Enter term</label>
+  <input type="text" class="form-control" id="term" name="term" placeholder="term">
+</div>
+<div class="mb-3">
+  <label  for="exampleFormControlInput1" class="form-label">Enter Debt to Income Ratio</label>
+  <input type="text" class="form-control" id="dtir1" name="dtir1" placeholder="Debt to Income Ratio">
+
+
+
+
+
+
+    <button type="submit" class="btn btn-primary">Predict</button>
+      </form>
+    <div>
+      <br>
+    <br>
+      {{prediction_text}}
+    </div>
+  </div>
+
+</section>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
